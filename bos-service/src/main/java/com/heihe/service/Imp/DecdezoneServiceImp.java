@@ -23,6 +23,7 @@ public class DecdezoneServiceImp implements DecidedzoneService {
 	/**
 	 * 添加定区
 	 */
+	@Override
 	public void add(Decidedzone model, String[] subareaId) {
 		// 执行这一步不会打印SQL语句，因为主键生成策略是(assigned)手动委派，事务提交时才会发送sql
 		decdezoneDao.save(model);
