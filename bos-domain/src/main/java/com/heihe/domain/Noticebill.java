@@ -23,6 +23,7 @@ public class Noticebill implements java.io.Serializable {
 	private String arrivecity;   // 到达城市
 	private String product;    // 商品
 	private Date pickdate; // 预约取派时间
+	private String startCity; // 起始城市
 	private Integer num;  // 件数
 	private Double weight;  // 重量
 	private String volume;  // 体积
@@ -49,7 +50,7 @@ public class Noticebill implements java.io.Serializable {
 			String customerName, String delegater, String telephone,
 			String pickaddress, String arrivecity, String product,
 			Date pickdate, Integer num, Double weight, String volume,
-			String remark, String ordertype, Set workbills) {
+			String remark, String ordertype, Set workbills,String startCity) {
 		this.id = id;
 		this.user = user;
 		this.staff = staff;
@@ -67,6 +68,7 @@ public class Noticebill implements java.io.Serializable {
 		this.remark = remark;
 		this.ordertype = ordertype;
 		this.workbills = workbills;
+		this.startCity= startCity;
 	}
 
 	// Property accessors
@@ -206,5 +208,11 @@ public class Noticebill implements java.io.Serializable {
 	public void setWorkbills(Set workbills) {
 		this.workbills = workbills;
 	}
+
+	public String getStartCity() {
+		return this.startCity;
+	}
+
+	public void setStartCity(String startCity) {this.startCity = startCity; }
 
 }

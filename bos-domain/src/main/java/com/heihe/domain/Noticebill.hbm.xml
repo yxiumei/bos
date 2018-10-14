@@ -31,6 +31,9 @@
         <property name="arrivecity" type="java.lang.String">
             <column name="arrivecity" length="20" />
         </property>
+        <property name="startCity" type="java.lang.String">
+            <column name="start_city" length="20"/>
+        </property>
         <property name="product" type="java.lang.String">
             <column name="product" length="20" />
         </property>

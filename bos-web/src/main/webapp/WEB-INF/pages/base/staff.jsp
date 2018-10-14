@@ -200,7 +200,7 @@
 			border : false,
 			rownumbers : true, // 显示行数
 			striped : true,
-			pageList: [2],    // 页面显示数据大小
+			pageList: [10,20,30],    // 页面显示数据大小
 			pagination : true,   // 是否显示 分页
 			toolbar : toolbar,   // 显示工具栏
 			url : "${pageContext.request.contextPath}/staffAction_staffList",  // 请求地址

@@ -8,6 +8,7 @@ import java.util.Set;
  */
 
 public class Staff implements java.io.Serializable {
+	private static final long serialVersionUID = -2650281065807281050L;
 
 	// Fields
 

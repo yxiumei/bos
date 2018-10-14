@@ -68,7 +68,6 @@ public class StaffAction extends BaseAction<Staff> {
 	 */
 	//@RequiresPermissions("staff_delete") 执行此方法与需要当前用户有staff_delete限权
 	public String delBatch(){
-		
 		staffService.delBatch(ids);
 		return LIST;
 	}

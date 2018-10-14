@@ -59,9 +59,11 @@ public class SubareaAction extends BaseAction<Subarea> {
 		}
 		Region region = model.getRegion();
 		if (region != null){
-			String province = region.getProvince(); // 省
+			// 省
+			String province = region.getProvince();
 			String city = region.getCity();
-			String district = region.getDistrict();  // 区
+			// 区
+			String district = region.getDistrict();
 			// 涉及到多表连接,需要为表添加别名
 			// 属性一表示分区对象中关联区域对象的属性名
 			// 属性二表示：别名，可以任意取

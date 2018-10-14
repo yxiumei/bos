@@ -129,12 +129,13 @@
 						required="true" size="144"/></td>
 				</tr>
 				<tr>
+					<td>起始城市:</td>
+					<td><input type="text" class="easyui-validatebox" name="startCrty"/></td>
 					<td>到达城市:</td>
-					<td><input type="text" class="easyui-validatebox" name="arrivecity"
-						 /></td>
-					<td>预约取件时间:</td>
-					<td><input type="text" class="easyui-datebox" name="pickdate"
-						data-options="editable:false" /></td>
+					<td><input type="text" class="easyui-validatebox" name="arrivecity"/></td>
+					<%--<td>预约取件时间:</td>--%>
+					<%--<td><input type="text" class="easyui-datebox" name="pickdate"--%>
+						<%--data-options="editable:false" /></td>--%>
 				</tr>
 				<tr>
 					<td>备注:</td>

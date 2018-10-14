@@ -51,6 +51,10 @@
 		<action name="staffAction_*" class="staffAction" method="{1}">
 			<result name="list">/WEB-INF/pages/base/staff.jsp</result>
 		</action>
+		<!---任务管理-->
+		<action name="taskAction_*" class="taskAction" method="{1}">
+			<result name="list">WEB-INF/pages/zhangzhuan/grouptask.jsp</result>
+		</action>
 		<!-- 区域管理 -->
 		<action name="regionAction_*" class="regionAction" method="{1}">
 			<result name="list">/WEB-INF/pages/base/region.jsp</result>
@@ -63,7 +67,7 @@
 		<action name="decidedzoneAction_*" class="decidedzoneAction" method="{1}">
 			<result name="list">/WEB-INF/pages/base/decidedzone.jsp</result>
 		</action>
-		<!-- 工单管理 -->
+		<!-- 通知单管理 -->
 		<action name="noticebillAction_*" class="noticebillAction" method="{1}">
 			<result name="list">/WEB-INF/pages/qupai/diaodu.jsp</result>
 		</action>
@@ -71,6 +75,11 @@
 		<!-- 工作单管理 -->
 		<action name="workorderAction_*" class="workorderAction" method="{1}">
 			
+		</action>
+		
+		<!-- 中转管理 -->
+		<action name="findGroupTask_*" class="findGroupTask" method="{1}">
+			<result name="list">/WEB-INF/pages/zhongzhuan/grouptask.jsp</result>
 		</action>
 		<!-- 限权管理 -->
 		<action name="functionAction_*" class="functionAcion" method="{1}">

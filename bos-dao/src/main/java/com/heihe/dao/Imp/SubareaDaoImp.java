@@ -13,6 +13,7 @@ public class SubareaDaoImp extends IBaseDaoImp<Subarea> implements SubareaDao {
 	/**
 	 * 查询通过省份查询有多少个分区
 	 */
+	@Override
 	public List<Object> findSubareasGrupByProvince() {
 		String hql = "SELECT r.province,COUNT(*) FROM Subarea s LEFT OUTER JOIN s.region r Group BY"
 				+ " r.province";

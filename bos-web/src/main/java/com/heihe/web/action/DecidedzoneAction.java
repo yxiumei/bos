@@ -69,7 +69,7 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 	 * 查询未关联定区的客户
 	 */
 	public String findListNotAssociation(){
-		List<Customer> list = iCustomerService.findListNotAsscoiation();
+		List<Customer> list = iCustomerService.findListNotAssociation();
 		this.java2json(list, new String[]{});
 		return null;
 	}
@@ -79,7 +79,7 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 	 */
 	public String findListAsscoiation(){
 		String decidedzoneId = model.getId();
-		List<Customer> list2 = iCustomerService.findListAsscoiation(decidedzoneId);
+		List<Customer> list2 = iCustomerService.findListHasAssociation(decidedzoneId);
 		this.java2json(list2, new String[]{});
 		return null;
 	}

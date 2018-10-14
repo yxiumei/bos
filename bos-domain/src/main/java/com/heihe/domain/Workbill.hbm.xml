@@ -7,10 +7,10 @@
             <column name="id" length="32" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="noticebill" class="com.heihe.domain.Noticebill" fetch="select">
+        <many-to-one lazy="false" name="noticebill" class="com.heihe.domain.Noticebill" fetch="select">
             <column name="noticebill_id" length="32" />
         </many-to-one>
-        <many-to-one name="staff" class="com.heihe.domain.Staff" fetch="select">
+        <many-to-one lazy="false" name="staff" class="com.heihe.domain.Staff" fetch="select">
             <column name="staff_id" length="32" />
         </many-to-one>
         <property name="type" type="java.lang.String">

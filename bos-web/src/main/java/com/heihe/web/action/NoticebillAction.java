@@ -23,12 +23,12 @@ public class NoticebillAction extends BaseAction<Noticebill> {
 	/**
 	 * 远程调用crm，通过客户电话查询客户，用于回显
 	 */
-	/*public String findCustomerByTelephone(){
+	public String findCustomerByTelephone(){
 
-		Customer customer = iCustomerService.findCustomerByTeltphone(model.getTelephone());
+		Customer customer = iCustomerService.findCustomerByTelephone(model.getTelephone());
 		this.java2json(customer, new String[]{});
 		return null;
-	}*/
+	}
 	// 查询未分配取派员的业务通知单(自动分配失败，手动分配)
 	public String findnoassociations(){
 		List<Noticebill> list = noticebillService.findnoassociations();

@@ -72,9 +72,7 @@ public class Workbill implements java.io.Serializable {
 		this.noticebill = noticebill;
 	}
 
-	public Staff getStaff() {
-		return this.staff;
-	}
+	public Staff getStaff() { return this.staff; }
 
 	public void setStaff(Staff staff) {
 		this.staff = staff;
