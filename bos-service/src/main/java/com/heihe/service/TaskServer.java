@@ -9,4 +9,10 @@ public interface TaskServer {
      * @param pageBean
      */
     PageBean pageQuery(PageBean pageBean);
+
+    /**
+     * 拾取任务
+     * @param wordIds
+     */
+    void pickUpTask(String wordIds);
 }

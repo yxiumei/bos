@@ -9,7 +9,11 @@ public enum TaskEnum {
 
     TASK_UNRECEIVED(0, "未拾取"),
     DISPATCHING(1 ,"派送中"),
-    HAVE_SIGNED_IN(2, "已签收")
+    HAVE_SIGNED_IN(2, "已签收"),
+    IS_STAFFER(1,"取派员"),
+    DELE(1, "以删除"),
+    NOT_DELE(0, "未删除"),
+    NORMAL(0, "正常")
     ;
 
     private Integer code;

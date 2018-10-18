@@ -63,7 +63,7 @@ public class UserAction extends BaseAction<User>{
 
 	/**
 	 * 用户登录,通过shiro框架认证
-	 * @param token 
+	 * @param
 	 */
 	public String login(){
 		//从Session中获取生成的验证码

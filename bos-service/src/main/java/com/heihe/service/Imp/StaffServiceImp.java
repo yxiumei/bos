@@ -22,12 +22,14 @@ public class StaffServiceImp implements StaffService {
 	/**
 	 * 添加取派员
 	 */
+	@Override
 	public void addSatff(Staff model) {
 		staffDao.save(model);
 	}
 	/**
 	 * 分页查询
 	 */
+	@Override
 	public void pageQuery(PageBean pageBean) {
 		staffDao.pageQuery(pageBean);
 		
@@ -35,6 +37,7 @@ public class StaffServiceImp implements StaffService {
 	/**
 	 * 批量删除取派员
 	 */
+	@Override
 	public void delBatch(String ids) {
 		// 把传过来的ids字符串进行拆分
 		String[] id = ids.split(",");
@@ -60,6 +63,7 @@ public class StaffServiceImp implements StaffService {
 	/**
 	 * 通过id查询取派员
 	 */
+	@Override
 	public Staff findStaffById(String id) {
 	
 		return staffDao.findById(id);
@@ -67,12 +71,14 @@ public class StaffServiceImp implements StaffService {
 	/**
 	 * 编辑取派员
 	 */
+	@Override
 	public void editStaff(Staff staff) {
 		staffDao.update(staff);
 	}
 	/**
 	 * 查询未删除的取派员
 	 */
+	@Override
 	public List<Staff> findListNoDelete() {
        // 创建离线查询对象
 		DetachedCriteria criteria = DetachedCriteria.forClass(Staff.class);

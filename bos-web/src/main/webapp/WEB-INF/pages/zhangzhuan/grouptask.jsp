@@ -57,16 +57,28 @@
                         }
                         // 将数组拼接成字符串
                         var ids  = array.join(",");  // 1,2,2,3
-
                         // 将所有的用户id传到后台进行逻辑删除
                         location.href ="${pageContext.request.contextPath }/staffAction_delBatch?ids="+ids;
-
                     }
 
                 });
 
             }else{
                 $.messager.alert("提示","请选择需要删除的取派员!","warning");
+            }
+        }
+
+        // 拾取任务
+        function pickUp(){
+            var rows = $("#grid").datagrid("getSelections");
+            if (1 == rows.length){
+				var taskDto = rows[0];  // 是一个json对象
+				var id = taskDto.taskNo;
+				var safferNo = taskDto.safferNo;
+                location.href ="${pageContext.request.contextPath }/findGroupTask_pickUpTask?wordIds="+id +"&"
+					+"safferNo=" + safferNo;
+            }else{
+                $.messager.alert("提示","请选择一个需要拾取的任务!","warning");
             }
         }
 
@@ -92,7 +104,7 @@
                 var ids = array1.join(",");
 
                 // 将所有的用户id传到后台进行逻辑恢复
-                location.href ="${pageContext.request.contextPath }/staffAction_recoverBatch?reids="+ids;
+
             }
         }
         //工具栏
@@ -105,22 +117,23 @@
 			id : 'button-view',
 			text : '拾取任务',
 			iconCls : 'icon-redo',
-			handler : doView
-		},
-            <shiro:hasPermission name="staff.delete">
-            {
-                id : 'button-delete',
-                text : '删除',
-                iconCls : 'icon-cancel',
-                handler : doDelete
-            },
-            </shiro:hasPermission>
-            {
-                id : 'button-save',
-                text : '还原',
-                iconCls : 'icon-save',
-                handler : doRestore
-            }];
+			handler : pickUp
+		}
+            <%--<shiro:hasPermission name="staff.delete">--%>
+            <%--{--%>
+                <%--id : 'button-delete',--%>
+                <%--text : '删除',--%>
+                <%--iconCls : 'icon-cancel',--%>
+                <%--handler : doDelete--%>
+            <%--},--%>
+            <%--</shiro:hasPermission>--%>
+            // {
+            //     id : 'button-save',
+            //     text : '还原',
+            //     iconCls : 'icon-save',
+            //     handler : doRestore
+            // }
+		      ];
         // 定义列
         var columns = [ [ {
             field : 'taskNo',
@@ -140,7 +153,7 @@
 			field : 'safferName',
 			title : '取派员姓名',
 			width : 120,
-			align : 'center',
+			align : 'center' ,
             }, {
             field : 'safferTelephone',
             title : '取派员电话',
@@ -195,14 +208,14 @@
             $('#grid').datagrid( {
                 iconCls : 'icon-forward',
                 fit : true,  // 分页条是否自动适应
-                border : false,
+                border : true,
                 rownumbers : true, // 显示行数
                 striped : true,
                 pageList: [10,20,30],    // 页面显示数据大小
                 pagination : true,   // 是否显示 分页
                 toolbar : toolbar,   // 显示工具栏
                 url : "${pageContext.request.contextPath}/findGroupTask_taskList",  // 请求地址
-                idField : 'id',  // id
+                idField : 'taskNo',  // id
                 columns : columns,  // 显示的字段
                 onDblClickRow : doDblClickRow
             });

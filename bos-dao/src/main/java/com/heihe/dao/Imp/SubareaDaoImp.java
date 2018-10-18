@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 import com.heihe.dao.SubareaDao;
 import com.heihe.dao.Imp.base.Imp.IBaseDaoImp;
 import com.heihe.domain.Subarea;
+/**
+ * @author 杨秀眉
+ */
 @Repository
 public class SubareaDaoImp extends IBaseDaoImp<Subarea> implements SubareaDao {
 

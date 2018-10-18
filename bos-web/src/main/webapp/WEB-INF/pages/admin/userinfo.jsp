@@ -91,9 +91,17 @@
 				</td></tr>
 				<tr>
 					<td>联系电话</td>
-					<td colspan="3">
+					<td >
 					<!-- 自定义校验规则 -->
 						<input type="text" name="telephone" id="telephone" data-options="validType:'telephore'" class="easyui-validatebox" required="true" />
+					</td>
+					<td>职位</td>
+					<td>
+						<select name="isStaffer" id="isStaffer" class="easyui-combobox" style="width: 150px;">
+							<option value="">请选择</option>
+							<option value="1">取派员</option>
+							<option value="2">管理员</option>
+						</select>
 					</td>
 				</tr>
 	           	<tr><td>备注:</td><td colspan="3"><textarea style="width:80%"></textarea></td></tr>

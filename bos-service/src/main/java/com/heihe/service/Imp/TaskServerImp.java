@@ -1,27 +1,33 @@
 package com.heihe.service.Imp;
 
+import com.heihe.dao.TranferTaskDao;
 import com.heihe.dao.WorkbillDao;
 import com.heihe.domain.Noticebill;
 import com.heihe.domain.Staff;
 import com.heihe.domain.Workbill;
+import com.heihe.domain.ZzTransferTask;
 import com.heihe.dto.TaskDto;
+import com.heihe.enums.TaskEnum;
 import com.heihe.service.TaskServer;
 import com.heihe.utils.PageBean;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.StyledEditorKit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author 杨秀眉
+ */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class TaskServerImp implements TaskServer {
 
     @Autowired
     private WorkbillDao workbillDao;
+    @Autowired
+    private TranferTaskDao tranferTaskDao;
     /**
      * 查询任务列表
      * @param pageBean
@@ -53,5 +59,22 @@ public class TaskServerImp implements TaskServer {
         }
         return pageBean;
 
+    }
+
+    @Override
+    public void pickUpTask(String wordIds) {
+        Workbill workbill = workbillDao.findById(wordIds);
+        workbill.setPickstate(TaskEnum.DISPATCHING.getMsg());
+        workbillDao.update(workbill);
+        ZzTransferTask transferTask = new ZzTransferTask();
+        Noticebill noticebill = workbill.getNoticebill();
+        if (null != noticebill){
+            transferTask.setStartPostion(noticebill.getStartCity());
+            transferTask.setMiddiePostion(noticebill.getStartCity());
+            transferTask.setEndPostion(noticebill.getArrivecity());
+            transferTask.setStatus(TaskEnum.DISPATCHING.getCode());
+            transferTask.setWorkId(wordIds);
+            tranferTaskDao.save(transferTask);
+        }
     }
 }

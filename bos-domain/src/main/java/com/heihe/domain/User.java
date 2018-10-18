@@ -22,6 +22,8 @@ public class User implements java.io.Serializable {
 	private String station;
 	private String telephone;
 	private String remark;
+	// 是否是取派员
+	private String isStaffer;
 	private Set noticebills = new HashSet(0);
 	private Set<AuthRole> authRoles = new HashSet(0);
 	
@@ -129,6 +131,11 @@ public class User implements java.io.Serializable {
 		super();
 	}
 
-	
+	public String getIsStaffer() {
+		return isStaffer;
+	}
 
+	public void setIsStaffer(String isStaffer) {
+		this.isStaffer = isStaffer;
+	}
 }
