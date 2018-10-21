@@ -6,7 +6,10 @@ import com.heihe.dao.Imp.base.IBaseDao;
 import com.heihe.domain.Workbill;
 
 public interface WorkbillDao extends IBaseDao<Workbill>{
-	// 查询新单
-	public List<Workbill> findNewWorkbills();
+	/**
+	 * 查询新单
+	 */
+
+	 List<Workbill> findNewWorkbills();
 
 }

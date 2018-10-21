@@ -10,11 +10,14 @@ import com.heihe.dto.TaskDto;
 import com.heihe.enums.TaskEnum;
 import com.heihe.service.TaskServer;
 import com.heihe.utils.PageBean;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,11 +72,16 @@ public class TaskServerImp implements TaskServer {
         ZzTransferTask transferTask = new ZzTransferTask();
         Noticebill noticebill = workbill.getNoticebill();
         if (null != noticebill){
+            Staff staff = noticebill.getStaff();
             transferTask.setStartPostion(noticebill.getStartCity());
             transferTask.setMiddiePostion(noticebill.getStartCity());
             transferTask.setEndPostion(noticebill.getArrivecity());
             transferTask.setStatus(TaskEnum.DISPATCHING.getCode());
             transferTask.setWorkId(wordIds);
+            transferTask.setStaffId(staff.getId());
+            // 拾取时间
+            Timestamp ts = new Timestamp(System.currentTimeMillis());
+            transferTask.setTaskTime(ts);
             tranferTaskDao.save(transferTask);
         }
     }

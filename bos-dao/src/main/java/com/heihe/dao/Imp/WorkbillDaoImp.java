@@ -16,8 +16,10 @@ public class WorkbillDaoImp extends IBaseDaoImp<Workbill> implements WorkbillDao
 	/**
 	 * 查询新单
 	 */
+	@Override
 	public List<Workbill> findNewWorkbills() {
 		return null;
 	}
+
 
 }

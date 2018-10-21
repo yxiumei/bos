@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
@@ -73,6 +72,10 @@
             var rows = $("#grid").datagrid("getSelections");
             if (1 == rows.length){
 				var taskDto = rows[0];  // 是一个json对象
+				if (taskDto.status == "派送中" ||taskDto.status == "已签收" ){
+                    $.messager.alert("提示","该任务以拾取!","warning");
+                    return ;
+				}
 				var id = taskDto.taskNo;
 				var safferNo = taskDto.safferNo;
                 location.href ="${pageContext.request.contextPath }/findGroupTask_pickUpTask?wordIds="+id +"&"
@@ -217,7 +220,7 @@
                 url : "${pageContext.request.contextPath}/findGroupTask_taskList",  // 请求地址
                 idField : 'taskNo',  // id
                 columns : columns,  // 显示的字段
-                onDblClickRow : doDblClickRow
+                // onDblClickRow : doDblClickRow
             });
 
             // 添加取派员窗口
@@ -229,16 +232,6 @@
                 closed: true,
                 height: 400,
                 resizable:false
-            });
-            // 对取派员编辑窗口进行编辑
-            $('#editStaffWindow').window({
-                title: '编辑取派员',
-                width: 400,
-                modal: true,  // 是一个窗口模式
-                shadow: true, // 当前窗口阴影显示
-                closed: true, // 初始值是否是关闭的
-                height: 400,
-                resizable:false  // 是否可以改变大小
             });
 
             // 查询取派员窗口
@@ -267,13 +260,6 @@
 
         });
 
-        // 双击表格显示编辑窗口
-        function doDblClickRow(rowIndex, rowData){
-            // 打开窗口
-            $('#editStaffWindow').window("open");
-            // 数据进行回写
-            $("#editSatffForm").form("load",rowData);  //rowData json对象的Staff数据
-        }
 
         // 添加派送员对手机进行验证,页面加载完执行
         $(function(){
@@ -343,53 +329,6 @@
 
 	<div region="center" style="overflow:auto;padding:5px;" border="false">
 		<form id="addSatffForm"  action="${pageContext.request.contextPath }/staffAction_add" method="post">
-			<table class="table-edit" width="80%" align="center">
-				<tr class="title">
-					<td colspan="2">收派员信息</td>
-				</tr>
-				<!-- TODO 这里完善收派员添加 table -->
-
-				<tr>
-					<td>姓名</td>
-					<td><input type="text" name="name" class="easyui-validatebox" required="true"/></td>
-				</tr>
-				<tr>
-					<td>手机</td>
-					<!-- 添加自定义的验证规则 -->
-					<td><input type="text" data-options="validType:'telephore'" name="telephone" class="easyui-validatebox" required="true"/></td>
-				</tr>
-				<tr>
-					<td>单位</td>
-					<td><input type="text" name="station" class="easyui-validatebox" required="true"/></td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="checkbox" name="haspda" value="1" />
-						是否有PDA</td>
-				</tr>
-				<tr>
-					<td>取派标准</td>
-					<td>
-						<input type="text" name="standard" class="easyui-validatebox" required="true"/>
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
-</div>
-
-<!-- 编辑取派员页面 -->
-<div class="easyui-window" title="对收派员进行者修改" id="editStaffWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
-	<div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
-		<div class="datagrid-toolbar">
-			<a id="edit" icon="icon-edit"  class="easyui-linkbutton" plain="true" >保存</a>
-		</div>
-	</div>
-
-	<div region="center" style="overflow:auto;padding:5px;" border="false">
-		<form id="editSatffForm"  action="${pageContext.request.contextPath }/staffAction_editStaff" method="post">
-			<!-- 编辑取派员的id -->
-			<input type="hidden" name="id">
 			<table class="table-edit" width="80%" align="center">
 				<tr class="title">
 					<td colspan="2">收派员信息</td>

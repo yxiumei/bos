@@ -33,31 +33,38 @@
 		<table class="easyui-datagrid" fit="true">
 			<thead>
 				<tr>
-					<th data-options="field:'id',width:120">编号</th>
-					<th data-options="field:'product',width:120">商品</th>
-					<th data-options="field:'arrivecity',width:120">到达城市</th>
-					<th data-options="field:'sender',width:120">发件人</th>
+					<th data-options="field:'taskId',width:120">编号</th>
+					<th data-options="field:'productName',width:120">商品</th>
+					<th data-options="field:'startPostion',width:120">起始城市</th>
+					<th data-options="field:'middiePostion',width:120">中转城市</th>
+					<th data-options="field:'endPostion',width:120">到达城市</th>
+					<th data-options="field:'customerName',width:120">发件人</th>
 					<th data-options="field:'receiver',width:120">收件人</th>
 					<th data-options="field:'receiverAddress',width:120">收件人地址</th>
-					<th data-options="field:'receiverTelephone',width:120">收件人电话</th>
-					<th data-options="field:'check',width:120">审核</th>
+					<th data-options="field:'telephone',width:120">收件人电话</th>
+					<th data-options="field:'remark',width:120">客户备注</th>
+					<th data-options="field:'status',width:120">状态</th>
 				</tr>
 			</thead>
 			<tbody>
-				<s:iterator value="#workOrderManages" var="workOrderManage">
+				<s:iterator value="#allList" var="task">
 				<tr>
-					<td> <s:property value="#workOrderManage.id"/> </td>
-					<td> <s:property value="#workOrderManage.product"/></td>
-					<td> <s:property value="#workOrderManage.arrivecity"/></td>
-					<td> <s:property value="#workOrderManage.sendername"/></td>
-					<td> <s:property value="#workOrderManage.receivername"/></td>
-					<td> <s:property value="#workOrderManage.receiveraddr"/></td>
-					<td> <s:property value="#workOrderManage.receiverphone"/></td>
-					<td> 
-						<s:a action="workordermanage_check" cssClass="easyui-linkbutton" iconCls="icon-edit">审核
-							<s:param name="id" value="#workOrderManage.id"></s:param>
-						</s:a>
-					</td>
+					<td> <s:property value="#task.taskId"/> </td>
+					<td> <s:property value="#task.productName"/></td>
+					<td> <s:property value="#task.startPostion"/></td>
+					<td> <s:property value="#task.middiePostion"/></td>
+					<td> <s:property value="#task.endPostion"/></td>
+					<td> <s:property value="#task.customerName"/></td>
+					<td> <s:property value="#task.receiver"/></td>
+					<td> <s:property value="#task.receiverAddress"/></td>
+					<td> <s:property value="#task.telephone"/></td>
+					<td> <s:property value="#task.remark"/></td>
+					<td> <s:property value="#task.status"/></td>
+					<%--<td> --%>
+						<%--<s:a action="workordermanage_check" cssClass="easyui-linkbutton" iconCls="icon-edit">审核--%>
+							<%--<s:param name="id" value="#workOrderManage.id"></s:param>--%>
+						<%--</s:a>--%>
+					<%--</td>--%>
 				</tr>
 				</s:iterator>
 			</tbody>
