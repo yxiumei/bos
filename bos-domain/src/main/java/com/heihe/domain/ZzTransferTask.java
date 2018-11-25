@@ -3,7 +3,6 @@ package com.heihe.domain;
 import lombok.Data;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @author 杨秀眉
