@@ -109,19 +109,15 @@
 				</tr>
 				<tr>
 					<td>品名:</td>
-					<td><input type="text" class="easyui-validatebox" name="product"
-						 /></td>
+					<td><input type="text" class="easyui-validatebox" name="product"/></td>
 					<td>件数:</td>
-					<td><input type="text" class="easyui-numberbox" name="num"
-						 /></td>
+					<td><input type="text" class="easyui-numberbox" name="num"/></td>
 				</tr>
 				<tr>
 					<td>重量:</td>
-					<td><input type="text" class="easyui-numberbox" name="weight"
-						 /></td>
+					<td><input type="text" class="easyui-numberbox" name="weight"/></td>
 					<td>体积:</td>
-					<td><input type="text" class="easyui-validatebox" name="volume"
-						 /></td>
+					<td><input type="text" class="easyui-validatebox" name="volume"/></td>
 				</tr>
 				<tr>
 					<td>取件地址</td>
@@ -138,9 +134,11 @@
 						<%--data-options="editable:false" /></td>--%>
 				</tr>
 				<tr>
+					<td>预约取件时间:</td>
+					<td><input type="text" class="easyui-datebox" name="pickdate" data-options="editable:false" /></td>
 					<td>备注:</td>
-					<td colspan="3"><textarea rows="5" cols="80" type="text" class="easyui-validatebox" name="remark"
-						 ></textarea></td>
+					<td colspan="1"><textarea rows="5" cols="50" type="text" class="easyui-validatebox" name="remark"
+					></textarea></td>
 				</tr>
 			</table>
 		</form>

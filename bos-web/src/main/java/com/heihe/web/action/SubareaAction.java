@@ -116,7 +116,7 @@ public class SubareaAction extends BaseAction<Subarea> {
 			
 		}
 		// 使用输出形式进行下载（一个流、两个头）
-		String fileName = "分区数据.xls";
+		String fileName = "subarea_data.xls";
 		// 根据文件呢名获得MIME类型
 		String mimeType = ServletActionContext.getServletContext().getMimeType(fileName);
 		// 获得写出流

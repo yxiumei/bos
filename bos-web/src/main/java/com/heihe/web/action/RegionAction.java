@@ -52,10 +52,14 @@ public class RegionAction extends BaseAction<Region>{
 			}
 			// 获得每一个单元格的值
 			String id = row.getCell(0).getStringCellValue();
-			String province = row.getCell(1).getStringCellValue(); // 省
-			String city = row.getCell(2).getStringCellValue();   // 城市
-			String district = row.getCell(3).getStringCellValue();   // 区
-			String postcode = row.getCell(4).getStringCellValue();  // 邮编
+			// 省
+			String province = row.getCell(1).getStringCellValue();
+			// 城市
+			String city = row.getCell(2).getStringCellValue();
+			// 区
+			String district = row.getCell(3).getStringCellValue();
+			// 邮编
+			String postcode = row.getCell(4).getStringCellValue();
 			Region region = new Region(id, province, city, district, postcode, null, null, null);
 			// 封装shortcode 和 citycode
 			province = province.substring(0, province.length() - 1);	

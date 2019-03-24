@@ -3,6 +3,7 @@ package com.heihe.service.Imp;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.heihe.crm.Customer;
 import com.heihe.domain.*;
 import com.heihe.enums.TaskEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import com.heihe.utils.BOSUtils;
 public class NoticebillSerciceImp implements NoticebillService {
 	@Autowired
 	private NoticebillDao NoticebillDao;
-	@Autowired
+	@Autowired(required = false)
 	private ICustomerService iCustomerService;
 	@Autowired
 	private DecdezoneDao decdezoneDao;
@@ -75,6 +76,12 @@ public class NoticebillSerciceImp implements NoticebillService {
 		}else{
 			// 没有查询到定区id，不能进行自动分单，需进行手动分单
 			model.setOrdertype(Noticebill.ORDERTYPE_MAN);
+			// 向crm系统中插入信息
+			Customer customer = new Customer();
+			customer.setName(model.getCustomerName());
+			customer.setAddress(model.getPickaddress());
+			customer.setTelephone(model.getTelephone());
+			boolean insert = iCustomerService.insert(customer);
 		}
 	}
 	/**

@@ -92,9 +92,9 @@
 		window.location.href="${pageContext.request.contextPath}/subareaAction_exportEls"
 	}
 	
-	function doImport(){
-		alert("导入");
-	}
+	// function doImport(){
+	// 	alert("导入");
+	// }
 	
 	//工具栏
 	var toolbar = [ {
@@ -117,11 +117,6 @@
 		text : '删除',
 		iconCls : 'icon-cancel',
 		handler : doDelete
-	},{
-		id : 'button-import',
-		text : '导入',
-		iconCls : 'icon-redo',
-		handler : doImport
 	},{
 		id : 'button-export',
 		text : '导出',

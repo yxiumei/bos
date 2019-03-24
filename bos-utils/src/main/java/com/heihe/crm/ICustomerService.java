@@ -101,4 +101,12 @@ public interface ICustomerService {
     @ResponseWrapper(localName = "findListNotAssociationResponse", targetNamespace = "http://service.heihe.com/", className = "com.heihe.crm.FindListNotAssociationResponse")
     public List<Customer> findListNotAssociation();
 
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "insert", targetNamespace = "http://service.heihe.com/", className = "com.heihe.crm.Insert")
+    @ResponseWrapper(localName = "insertResponse", targetNamespace = "http://service.heihe.com/", className = "com.heihe.crm.InsertResponse")
+    public boolean insert(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    Customer arg0);
+
 }

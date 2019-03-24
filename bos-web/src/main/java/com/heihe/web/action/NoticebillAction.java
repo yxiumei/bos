@@ -16,7 +16,7 @@ import com.heihe.web.action.base.BaseAction;
 public class NoticebillAction extends BaseAction<Noticebill> {
 
 	// 注入crm客户端代理对象
-	@Autowired
+	@Autowired(required = false)
 	private ICustomerService iCustomerService;
 	@Autowired
 	private NoticebillService noticebillService;

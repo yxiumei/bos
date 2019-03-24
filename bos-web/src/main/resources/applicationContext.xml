@@ -61,9 +61,13 @@
     <context:annotation-config/> <tx:annotation-driven/>
 
     <!-- 配置crm代理对象 http://39.106.104.216:8080/crm-bos/service/customer-->
+    <!--<jaxws:client id="crmClient"-->
+                  <!--serviceClass="com.heihe.crm.ICustomerService"-->
+                  <!--address="http://39.106.104.216:8080/crm-bos/service/customer">-->
+    <!--</jaxws:client>-->
     <jaxws:client id="crmClient"
                   serviceClass="com.heihe.crm.ICustomerService"
-                  address="http://39.106.104.216:8080/crm-bos/service/customer">
+                  address="http://127.0.0.1:8080/crm-bos/service/customer">
     </jaxws:client>
 
     <!-- 配置shiro框架过滤器工厂 -->

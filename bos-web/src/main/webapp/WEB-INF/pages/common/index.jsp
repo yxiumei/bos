@@ -176,7 +176,7 @@
 	}
 	// 版权信息
 	function showAbout(){
-		$.messager.alert("宅急送 v1.0","管理员邮箱: zqx@itcast.cn");
+		$.messager.alert("配送 v1.0","管理员邮箱: zqx@itcast.cn");
 	}
 </script>
 </head>
