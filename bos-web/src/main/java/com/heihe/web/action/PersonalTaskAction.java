@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -24,8 +25,10 @@ public class PersonalTaskAction extends BaseAction<PersonalTaskDto>{
     @Autowired
     private PersonalTaskService personalTaskService;
 
-
-
+    /**
+     * 获取个人任务列表
+     * @return
+     */
     public String personalList(){
         User user = BOSUtils.getLoginUser();
         List<PersonalTaskDto> allList;
@@ -36,5 +39,36 @@ public class PersonalTaskAction extends BaseAction<PersonalTaskDto>{
         }
         this.java2json(allList, null);
         return null;
+    }
+
+    /**
+     * 中转个人任务
+     */
+    public  String  transferTask() throws UnsupportedEncodingException {
+        PersonalTaskDto model = new PersonalTaskDto();
+        model.setTaskId(id);
+        String middiePostion = new String(middiePostions.getBytes("iso-8859-1"),"utf-8");
+        model.setMiddiePostion(middiePostion);
+        personalTaskService.updatetransferTask(model);
+        return LIST;
+    }
+
+    private String id;
+    private String middiePostions;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getMiddiePostions() {
+        return middiePostions;
+    }
+
+    public void setMiddiePostions(String middiePostions) {
+        this.middiePostions = middiePostions;
     }
 }

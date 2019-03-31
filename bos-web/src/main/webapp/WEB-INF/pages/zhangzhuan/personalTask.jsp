@@ -30,51 +30,25 @@
     <script type="text/javascript">
         function doAdd(){
             //alert("增加...");
-            $('#addStaffWindow').window("open");
+            $('#transferSearchWindow').window("open");
         }
 
-
-
-
-        // 删除取派员，逻辑删除
-        function doDelete(){
-            var rows = $("#grid").datagrid("getSelections");
-            if (rows !=0){
-                // 确认提示
-                $.messager.confirm("确认删除","您确认要删除所选则的取派员吗？",function(flg){
-                    var array = new Array(); // 创建一个数组
-                    //获得所选取派员的id
-                    if (flg){ // 确定删除
-                        for (var i = 0; i < rows.length; i ++){
-                            // 从数组中获得每一个对象
-                            var staff = rows[i];  // 是一个json对象
-                            var id = staff.id;
-                            array.push(id);
-                        }
-                        // 将数组拼接成字符串
-                        var ids  = array.join(",");  // 1,2,2,3
-                        // 将所有的用户id传到后台进行逻辑删除
-                        location.href ="${pageContext.request.contextPath }/staffAction_delBatch?ids="+ids;
-                    }
-
-                });
-
-            }else{
-                $.messager.alert("提示","请选择需要删除的取派员!","warning");
-            }
-        }
-
-        // 拾取任务
+        // 任务中转
         function transfer(){
             var rows = $("#grid").datagrid("getSelections");
-            if (1 == rows.length){
-                var taskDto = rows[0];  // 是一个json对象
-                var id = taskDto.taskNo;
-                var safferNo = taskDto.safferNo;
-                location.href ="${pageContext.request.contextPath }/findGroupTask_pickUpTask?wordIds="+id +"&"
-                    +"safferNo=" + safferNo;
+            if (rows.length == 1){
+                if (rows[0].status != 1) {
+                    $.messager.alert("提示","该任务已完结!","warning");
+                    return;
+                }
+                $("#middiePostions").val('');
+                $('#transferSearchWindow').window("open");
+                $("#id").val(rows[0].taskId);
+                $("#startPostions").val(rows[0].startPostion);
+                $("#endPostions").val(rows[0].endPostion);
+                $('#transfer').form("load",rows[0]);
             }else{
-                $.messager.alert("提示","请选择一个需要拾取的任务!","warning");
+                $.messager.alert("提示","请选择一个需要中转的任务!","warning");
             }
         }
 
@@ -85,20 +59,6 @@
             iconCls : 'icon-redo',
             handler : transfer
         }
-            <%--<shiro:hasPermission name="staff.delete">--%>
-            <%--{--%>
-            <%--id : 'button-delete',--%>
-            <%--text : '删除',--%>
-            <%--iconCls : 'icon-cancel',--%>
-            <%--handler : doDelete--%>
-            <%--},--%>
-            <%--</shiro:hasPermission>--%>
-            // {
-            //     id : 'button-save',
-            //     text : '还原',
-            //     iconCls : 'icon-save',
-            //     handler : doRestore
-            // }
         ];
         // 定义列
         var columns = [ [ {
@@ -213,6 +173,26 @@
                 columns : columns,  // 显示的字段
             });
 
+            // 中转任务窗口
+            $('#transferSearchWindow').window({
+                title: '中转任务',
+                width: 400,
+                modal: true,
+                shadow: true,
+                closed: true,
+                height: 400,
+                resizable:false
+            });
+
+            //为保存按钮绑定事件
+            $("#save").click(function(){
+                //表单校验，如果通过，提交表单
+                var v = $("#transfer").form("validate");
+                if (v) {
+                    $("#transfer").submit();
+                }
+            });
+
         });
     </script>
 </head>
@@ -220,5 +200,41 @@
 <div region="center" border="false">
     <table id="grid"></table>
 </div>
+
+
+<div class="easyui-window" title="中转任务" id="transferSearchWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+    <div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
+        <div class="datagrid-toolbar">
+            <a id="save" icon="icon-save"  class="easyui-linkbutton" plain="true" >保存</a>
+        </div>
+    </div>
+
+    <div region="center" style="overflow:auto;padding:5px;" border="false">
+        <form id="transfer" action="${pageContext.request.contextPath }/personalTask_transferTask" method="get">
+            <input type="hidden" name="id" id="id">
+            <table class="table-edit" width="80%" align="center">
+                <tr class="title">
+                    <td colspan="2">中转任务</td>
+                </tr>
+                <tr>
+                    <td>起始城市</td>
+                    <td><input type="text" name="startPostions" id="startPostions"  class="easyui-validatebox"
+                               readonly="true"/></td>
+                </tr>
+                <tr>
+                    <td>目标城市</td>
+                    <td><input type="text" name="endPostions" id="endPostions"
+                               class="easyui-validatebox" readonly="true"/></td>
+                </tr>
+                <tr>
+                    <td>您中转的城市</td>
+                    <td><input type="text" name="middiePostions"
+                               class="easyui-validatebox"/></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>

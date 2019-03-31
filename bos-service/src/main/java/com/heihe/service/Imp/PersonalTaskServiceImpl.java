@@ -6,12 +6,14 @@ import com.heihe.domain.Noticebill;
 import com.heihe.domain.Workbill;
 import com.heihe.domain.ZzTransferTask;
 import com.heihe.dto.PersonalTaskDto;
+import com.heihe.enums.TaskEnum;
 import com.heihe.service.PersonalTaskService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.transform.AbstractProcessTask;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
  * @author 杨秀眉
  */
 @Service
+@Transactional
 public class PersonalTaskServiceImpl implements PersonalTaskService {
 
     @Autowired
@@ -80,5 +83,22 @@ public class PersonalTaskServiceImpl implements PersonalTaskService {
             list.add(personalTaskDto);
         }
         return list;
+    }
+
+    @Override
+    public void updatetransferTask(PersonalTaskDto model) {
+        String taskId = model.getTaskId();
+
+        ZzTransferTask transferTask = tranferTaskDao.findById(taskId);
+        String middiePostion = transferTask.getMiddiePostion();
+        // 判断是否到达目标城市
+        if (transferTask.getEndPostion().equals(model.getMiddiePostion())) {
+            transferTask.setStatus(TaskEnum.HAVE_SIGNED_IN.getCode());
+            transferTask.setMiddiePostion(middiePostion + "=>" + model.getMiddiePostion());
+        } else {
+            transferTask.setMiddiePostion(middiePostion + "=>" + model.getMiddiePostion());
+        }
+        // 更新任务
+        tranferTaskDao.update(transferTask);
     }
 }

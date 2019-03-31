@@ -13,5 +13,5 @@ public interface TranferTaskDao extends IBaseDao<ZzTransferTask> {
     /**
      * 通过取派员查询任务
      */
-    public List<ZzTransferTask> getListByStafferId(String staffId);
+    List<ZzTransferTask> getListByStafferId(String staffId);
 }
