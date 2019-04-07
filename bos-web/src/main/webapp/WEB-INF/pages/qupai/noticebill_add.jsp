@@ -46,8 +46,8 @@
 		<div class="datagrid-toolbar">
 			<a id="save" icon="icon-save" href="#" class="easyui-linkbutton"
 				plain="true">新单</a>
-			<a id="edit" icon="icon-edit" href="${pageContext.request.contextPath }/page_qupai_noticebill.action" class="easyui-linkbutton"
-				plain="true">工单操作</a>	
+			<%--<a id="edit" icon="icon-edit" href="${pageContext.request.contextPath }/page_qupai_noticebill.action" class="easyui-linkbutton"--%>
+				<%--plain="true">工单操作</a>	--%>
 		</div>
 	</div>
 	<div region="center" style="overflow:auto;padding:5px;" border="false">
