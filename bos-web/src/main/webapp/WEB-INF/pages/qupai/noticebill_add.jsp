@@ -126,7 +126,7 @@
 				</tr>
 				<tr>
 					<td>起始城市:</td>
-					<td><input type="text" class="easyui-validatebox" name="startCrty"/></td>
+					<td><input type="text" class="easyui-validatebox" name="startCity"/></td>
 					<td>到达城市:</td>
 					<td><input type="text" class="easyui-validatebox" name="arrivecity"/></td>
 					<%--<td>预约取件时间:</td>--%>

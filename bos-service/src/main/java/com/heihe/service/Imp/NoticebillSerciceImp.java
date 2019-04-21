@@ -81,7 +81,10 @@ public class NoticebillSerciceImp implements NoticebillService {
 			customer.setName(model.getCustomerName());
 			customer.setAddress(model.getPickaddress());
 			customer.setTelephone(model.getTelephone());
-			boolean insert = iCustomerService.insert(customer);
+			try {
+				boolean insert = iCustomerService.insert(customer);
+			} catch (Exception e) {
+			}
 		}
 	}
 	/**
