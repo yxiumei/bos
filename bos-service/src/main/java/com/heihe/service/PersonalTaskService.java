@@ -1,6 +1,7 @@
 package com.heihe.service;
 
 import com.heihe.dto.PersonalTaskDto;
+import com.heihe.utils.PageBean;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface PersonalTaskService {
 
     /** 中转任务*/
     void updatetransferTask(PersonalTaskDto model);
+
+    void pageQuery(PageBean pageBean);
 }

@@ -12,5 +12,6 @@ public interface UserService {
 	public void save(User model, String[] roles);
 	// 分页查询
 	public void pageQuery(PageBean pageBean);
-	
+
+    void delBatch(String ids);
 }

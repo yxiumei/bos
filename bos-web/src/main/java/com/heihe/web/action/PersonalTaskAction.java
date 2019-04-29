@@ -7,6 +7,8 @@ import com.heihe.service.PersonalTaskService;
 import com.heihe.utils.BOSUtils;
 import com.heihe.web.action.base.BaseAction;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -30,13 +32,20 @@ public class PersonalTaskAction extends BaseAction<PersonalTaskDto>{
      * @return
      */
     public String personalList(){
+
         User user = BOSUtils.getLoginUser();
         List<PersonalTaskDto> allList;
         if ("admin".equals(user.getUsername())){
             allList = personalTaskService.getAllList();
+            //personalTaskService.pageQuery(pageBean);
         } else {
+//            DetachedCriteria criteria = pageBean.getDetachedCriteria();
+//            criteria.add(Restrictions.like("staffId",user.getId()));
+//            personalTaskService.pageQuery(pageBean);
             allList = personalTaskService.getList(user.getId());
         }
+//        this.java2json(pageBean, new String[] { "currentPage",
+//                "detachedCriteria", "pageSize" });
         this.java2json(allList, null);
         return null;
     }

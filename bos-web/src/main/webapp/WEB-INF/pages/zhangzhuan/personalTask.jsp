@@ -166,7 +166,7 @@
                 rownumbers : true, // 显示行数
                 striped : true,
                 pageList: [10,20,30],    // 页面显示数据大小
-                pagination : true,   // 是否显示 分页
+                pagination : false,   // 是否显示 分页
                 toolbar : toolbar,   // 显示工具栏
                 url : "${pageContext.request.contextPath}/personalTask_personalList",  // 请求地址
                 idField : 'taskNo',  // id

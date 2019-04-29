@@ -8,12 +8,14 @@ import com.heihe.domain.ZzTransferTask;
 import com.heihe.dto.PersonalTaskDto;
 import com.heihe.enums.TaskEnum;
 import com.heihe.service.PersonalTaskService;
+import com.heihe.utils.PageBean;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.transform.AbstractProcessTask;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -101,4 +103,30 @@ public class PersonalTaskServiceImpl implements PersonalTaskService {
         // 更新任务
         tranferTaskDao.update(transferTask);
     }
+
+    @Override
+    public void pageQuery(PageBean pageBean) {
+        tranferTaskDao.pageQuery(pageBean);
+        if  (null != pageBean) {
+            List rows = pageBean.getRows();
+            List<Workbill> workbills = new ArrayList<>();
+            List<ZzTransferTask> list = new ArrayList<>();
+            if (!CollectionUtils.isEmpty(rows)) {
+                for (Object obj: rows) {
+                    list.add((ZzTransferTask) obj);
+                }
+                List<String> workIdList = list.stream()
+                        .map(ZzTransferTask::getWorkId)
+                        .collect(Collectors.toList());
+                for (String workId: workIdList) {
+                    Workbill byId = workbillDao.findById(workId);
+                    workbills.add(byId);
+                }
+                List<Noticebill> collectList = workbills.stream().map(Workbill::getNoticebill).collect(Collectors.toList());
+                List<PersonalTaskDto> personalTaskDtos = getTask(list, collectList);
+                pageBean.setRows(personalTaskDtos);
+            }
+        }
+    }
+
 }

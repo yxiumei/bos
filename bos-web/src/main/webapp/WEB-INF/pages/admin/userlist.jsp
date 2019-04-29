@@ -140,7 +140,7 @@
 	}
 
 	function doDelete() {
-		alert("删除用户");
+		//alert("删除用户");
 		var ids = [];
 		var items = $('#grid').datagrid('getSelections');
 		for(var i=0; i<items.length; i++){
@@ -148,9 +148,9 @@
 		}
 			
 		console.info(ids.join(","));
-		
-		$('#grid').datagrid('reload');
-		$('#grid').datagrid('uncheckAll');
+        location.href ="${pageContext.request.contextPath }/UserAction_delBatch?ids="+ids;
+		// $('#grid').datagrid('reload');
+		// $('#grid').datagrid('uncheckAll');
 	}
 	
 </script>		

@@ -144,4 +144,17 @@ public class UserAction extends BaseAction<User>{
 		return null;
 	}
 
+	public String delBatch(){
+		userService.delBatch(ids);
+		return LIST;
+	}
+
+	private String ids;
+	public String getIds() {
+		return ids;
+	}
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
 }

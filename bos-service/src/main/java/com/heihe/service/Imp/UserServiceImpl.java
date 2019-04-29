@@ -81,4 +81,19 @@ public class UserServiceImpl implements UserService{
 	public void pageQuery(PageBean pageBean) {
 		userDao.pageQuery(pageBean);
 	}
+
+
+		@Override
+		public void delBatch(String ids) {
+			// 把传过来的ids字符串进行拆分
+			String[] id = ids.split(",");
+			if (org.apache.commons.lang3.StringUtils.isNoneBlank(id)){
+				for (String userId: id){
+					User user = userDao.findById(userId);
+					userDao.delete(user);
+					staffDao.executeUpdate("staff.delBatch", userId);
+				}
+			}
+	}
+
 }

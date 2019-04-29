@@ -100,11 +100,6 @@
 		text : '查询',
 		iconCls : 'icon-search',
 		handler : doView
-	}, {
-		id : 'button-add',
-		text : '增加',
-		iconCls : 'icon-add',
-		handler : doAdd
 	},
  	<shiro:hasPermission name="staff.delete"> 
     {
