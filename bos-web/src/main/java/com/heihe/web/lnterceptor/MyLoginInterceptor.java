@@ -20,7 +20,7 @@ public class MyLoginInterceptor extends MethodFilterInterceptor{
 			// 跳转到登录页面
 			return "login";
 		}
-		// 用户已经登录，放行
+		// 用户已经登录，放行12
 		return invocation.invoke();
 	}
 
