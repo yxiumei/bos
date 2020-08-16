@@ -17,7 +17,7 @@ public class MyLoginInterceptor extends MethodFilterInterceptor{
 		// 获得session
 		User user = BOSUtils.getLoginUser();
 		if (user == null){
-			// 跳转到登录页面
+			// 跳转到登录页面1
 			return "login";
 		}
 		// 用户已经登录，放行
